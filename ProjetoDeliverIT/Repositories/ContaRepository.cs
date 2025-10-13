@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ProjetoDeliverIT.Data; // Altere para o namespace correto se necessário
+using ProjetoDeliverIT.Data; 
 
 namespace ProjetoDeliverIT.Repositories
 {

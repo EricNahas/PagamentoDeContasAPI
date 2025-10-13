@@ -1,7 +1,8 @@
-﻿using ProjetoDeliverIT.Models;
+﻿using AutoMapper;
+using ProjetoDeliverIT.DTOs;
+using ProjetoDeliverIT.Models;
 using ProjetoDeliverIT.Repositories;
 using ProjetoDeliverIT.Utils;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ProjetoDeliverIT.Services
 {
@@ -9,11 +10,14 @@ namespace ProjetoDeliverIT.Services
     {
         private readonly IContaRepository _repo;
         private readonly IContaRegraAtrasoRepository _regraRepo;
+        private readonly IMapper _mapper;
 
-        public ContaService(IContaRepository repo, IContaRegraAtrasoRepository regraRepo)
+
+        public ContaService(IContaRepository repo, IContaRegraAtrasoRepository regraRepo, IMapper mapper)
         {
             _repo = repo;
             _regraRepo = regraRepo;
+            _mapper = mapper;
         }
 
         public RetornoAPI Insert(Conta bill)
@@ -31,9 +35,9 @@ namespace ProjetoDeliverIT.Services
 
                 if (diasAtraso > 0)
                 {
-                    bill.ValorCorrigido = bill.ValorOriginal +
-                        bill.ValorOriginal * bill.Multa / 100 +
-                        (bill.ValorOriginal * (bill.JurosDia / 100) * diasAtraso);
+                    bill.Multa = bill.ValorOriginal * regra.Multa;
+                    bill.JurosDia = bill.ValorOriginal * regra.JurosDia * diasAtraso;
+                    bill.ValorCorrigido = bill.ValorOriginal + bill.Multa + bill.JurosDia;
                 }
                 else
                     bill.ValorCorrigido = bill.ValorOriginal;
@@ -49,25 +53,13 @@ namespace ProjetoDeliverIT.Services
             }
         }
 
-        private void DefinirMultaEJuros(Conta bill)
+        public IEnumerable<ContaDTO> GetAll()
         {
-            if (bill.DiasAtraso <= 3)
-            {
-                bill.Multa = 2;
-                bill.JurosDia = 0.1m;
-            }
-            else if (bill.DiasAtraso <= 5)
-            {
-                bill.Multa = 3;
-                bill.JurosDia = 0.2m;
-            }
-            else
-            {
-                bill.Multa = 5;
-                bill.JurosDia = 0.3m;
-            }
-        }
+            IEnumerable<Conta> contas = _repo.GetAll();
 
-        public IEnumerable<Conta> GetAll() => _repo.GetAll();
+            var listaContas = _mapper.Map<IEnumerable<ContaDTO>>(contas);
+
+            return listaContas;
+        }
     }
 }
