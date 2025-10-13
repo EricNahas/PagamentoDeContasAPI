@@ -2,9 +2,14 @@
 using ProjetoDeliverIT.Enumerators;
 using ProjetoDeliverIT.Models;
 using ProjetoDeliverIT.Services;
+using ProjetoDeliverIT.Utils;
 
 namespace ProjetoDeliverIT.Controllers
 {
+
+    /// <summary>
+    /// Controlador responsável pelo gerenciamento de contas.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class ContaController : ControllerBase
@@ -16,6 +21,10 @@ namespace ProjetoDeliverIT.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Persiste uma Conta 
+        /// </summary>
+        /// <returns>Mensagem de Retorno e Objeto persistido</returns>
         [HttpPost]
         public IActionResult Post([FromBody] Conta bill)
         {
@@ -24,9 +33,12 @@ namespace ProjetoDeliverIT.Controllers
 
             RetornoAPI result = _service.Insert(bill);
 
-            return Ok(result);
+            return ResponseUtils.RetornarRequisicaoResposta(this, result);
         }
 
+        /// <summary>
+        /// Retorna todas as Contas cadastradas
+        /// </summary>
         [HttpGet]
         public IActionResult GetAll()
         {

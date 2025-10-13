@@ -1,7 +1,12 @@
-﻿namespace ProjetoDeliverIT.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ProjetoDeliverIT.Models
 {
     public class ContaRegraAtraso
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public int DiasMinimo { get; set; }
 
