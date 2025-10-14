@@ -28,7 +28,7 @@ Implementar um serviço REST que permita:
 ---
 
 ## 📦 Estrutura do Projeto
-
+```
 PagamentoDeContasAPI/
 │
 ├── Controllers/
@@ -57,6 +57,7 @@ PagamentoDeContasAPI/
 │
 ├── appsettings.json → Configuração do MySQL
 └── Program.cs → Configuração da aplicação
+```
 ---
 
 ## 🧩 Regras de Negócio
