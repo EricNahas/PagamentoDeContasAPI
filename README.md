@@ -8,10 +8,10 @@ O objetivo é gerenciar **Contas**, aplicando **regras parametrizadas** de multa
 ## 🧠 Objetivo
 
 Implementar um serviço REST que permita:
-- Cadastrar contas a pagar.  
+- Cadastrar contas.  
 - Calcular automaticamente multa e juros conforme regras cadastradas.  
 - Listar todas as contas registradas.  
-- Gerenciar regras de atraso de forma dinâmica (sem valores fixos em código).
+- Demonstrar conhecimento em abstração e expansabilidade
 
 ---
 
@@ -32,34 +32,31 @@ Implementar um serviço REST que permita:
 PagamentoDeContasAPI/
 │
 ├── Controllers/
-│ ├── ContasController.cs → Endpoints principais da API
-│ └── RegrasAtrasoController.cs → Gerenciamento das regras de cálculo
+│ └── ContasController.cs → Endpoints principais da API
 │
 ├── Data/
 │ └── AppDbContext.cs → Contexto do banco (EF Core)
 │
 ├── Models/
 │ ├── Conta.cs → Entidade de conta a pagar
-│ ├── RegraAtraso.cs → Tabela parametrizada de regras
+│ ├── ContaRegraAtraso.cs → Tabela parametrizada de regras
 │ └── RetornoAPI.cs → Modelo padrão de resposta
 │
 ├── Repositories/
 │ ├── IContaRepository.cs
 │ ├── ContaRepository.cs
-│ ├── IRegraAtrasoRepository.cs
-│ └── RegraAtrasoRepository.cs
+│ ├── IContaRegraAtrasoRepository.cs
+│ └── ContaRegraAtrasoRepository.cs
 │
 ├── Services/
 │ ├── IContaService.cs
 │ └── ContaService.cs
 │
 ├── Utils/
-│ ├── ResponseUtils.cs → Padroniza mensagens de retorno
-│ └── HttpResponseUtils.cs → Converte RetornoAPI em IActionResult
+│ └── ResponseUtils.cs → Padroniza mensagens de retorno e Converte RetornoAPI em IActionResult
 │
 ├── appsettings.json → Configuração do MySQL
 └── Program.cs → Configuração da aplicação
-
 ---
 
 ## 🧩 Regras de Negócio
