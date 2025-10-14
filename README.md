@@ -122,6 +122,8 @@ Lista todas as contas registradas.
 
 - Documentação via Swagger
 
+---
+
 👤 Autor
 
 Desenvolvido por Eric Nahas
