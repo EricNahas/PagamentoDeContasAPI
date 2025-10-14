@@ -91,7 +91,7 @@ Response:
 ```json
 {
   "mensagemRetorno": "Conta inserida com sucesso.",
-  "statusRetorno": 1,
+  "statusRetorno": 200,
   "dadosRetorno": {
     "id": 1,
     "nome": "Energia Elétrica",
