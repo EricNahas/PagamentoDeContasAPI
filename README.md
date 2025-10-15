@@ -54,6 +54,9 @@ PagamentoDeContasAPI/
 │
 ├── Utils/
 │ └── ResponseUtils.cs → Padroniza mensagens de retorno e Converte RetornoAPI em IActionResult
+│ └── MensagemRetornoAPI.cs → Classe estática com as mensagens de retorno de RetornoAPI
+│ └── CustomException.cs → Exceções Customizadas
+│ └── CampoObrigatorioAttribute.cs → Atributos customizados para melhor entendimento em erros por obrigatoriedade
 │
 ├── appsettings.json → Configuração do MySQL
 └── Program.cs → Configuração da aplicação
