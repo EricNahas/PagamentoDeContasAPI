@@ -11,7 +11,7 @@ Implementar um serviço REST que permita:
 - Cadastrar contas.  
 - Calcular automaticamente multa e juros conforme regras cadastradas.  
 - Listar todas as contas registradas.  
-- Demonstrar conhecimento em abstração e expansabilidade
+- Evidenciar habilidade em projetar sistemas abstratos, genéricos e escaláveis.
 
 ---
 
@@ -54,6 +54,9 @@ PagamentoDeContasAPI/
 │
 ├── Utils/
 │ └── ResponseUtils.cs → Padroniza mensagens de retorno e Converte RetornoAPI em IActionResult
+│ └── MensagemRetornoAPI.cs → Classe estática com as mensagens de retorno de RetornoAPI
+│ └── CustomException.cs → Exceções Customizadas
+│ └── CampoObrigatorioAttribute.cs → Atributos customizados para melhor entendimento em erros por obrigatoriedade
 │
 ├── appsettings.json → Configuração do MySQL
 └── Program.cs → Configuração da aplicação
@@ -127,4 +130,3 @@ Lista todas as contas registradas.
 👤 Autor
 
 Desenvolvido por Eric Nahas
-para o processo seletivo da Deliver IT
