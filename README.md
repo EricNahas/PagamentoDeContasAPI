@@ -130,4 +130,3 @@ Lista todas as contas registradas.
 👤 Autor
 
 Desenvolvido por Eric Nahas
-para o processo seletivo da Deliver IT
