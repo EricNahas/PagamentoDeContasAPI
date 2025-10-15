@@ -6,7 +6,7 @@ namespace ProjetoDeliverIT.Services
     public interface IContaService
     {
         RetornoAPI Insert(Conta bill);
-        IEnumerable<ContaDTO> GetAll();
+        RetornoAPI GetAll();
 
     }
 }

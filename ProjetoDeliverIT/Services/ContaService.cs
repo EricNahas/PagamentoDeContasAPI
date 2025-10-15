@@ -51,13 +51,21 @@ namespace ProjetoDeliverIT.Services
             }
         }
 
-        public IEnumerable<ContaDTO> GetAll()
+        public RetornoAPI GetAll()
         {
-            IEnumerable<Conta> contas = _repo.GetAll();
 
-            var listaContas = _mapper.Map<IEnumerable<ContaDTO>>(contas);
+            try
+            {
+                IEnumerable<Conta> contas = _repo.GetAll();
 
-            return listaContas;
+                var listaContas = _mapper.Map<IEnumerable<ContaDTO>>(contas);
+
+                return ResponseUtils.RetornoSucessoErro(Enumerators.StatusRetornoAPI.Sucesso, MensagemRetornoAPI.Sucesso, listaContas);
+            }
+            catch (CustomException ex)
+            {
+                return ex.RetornoAPI;
+            }
         }
 
         #region Insert - Métodos Auxiliares
