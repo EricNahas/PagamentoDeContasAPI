@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ProjetoDeliverIT.Utils;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjetoDeliverIT.Models
@@ -9,12 +10,17 @@ namespace ProjetoDeliverIT.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        #region [ Campos Obrigatórios ]
-        public required string Nome { get; set; }
-        public required decimal ValorOriginal { get; set; }
-        public required DateTimeOffset DataVencimento { get; set; }
-        public required DateTimeOffset DataPagamento { get; set; }
-        #endregion
+        [CampoObrigatorioAttribute(ErrorMessage = "O campo Nome é obrigatório.")]
+        public string Nome { get; set; } = string.Empty;
+
+        [CampoObrigatorioAttribute(ErrorMessage = "O campo Valor Original é obrigatório.")]
+        public decimal ValorOriginal { get; set; }
+
+        [CampoObrigatorioAttribute(ErrorMessage = "O campo Data de Vencimento é obrigatório.")]
+        public DateTimeOffset DataVencimento { get; set; }
+
+        [CampoObrigatorioAttribute(ErrorMessage = "O campo Data de Pagamento é obrigatório.")]
+        public DateTimeOffset DataPagamento { get; set; }
 
         public decimal ValorCorrigido { get; set; }
         public int DiasAtraso { get; set; }

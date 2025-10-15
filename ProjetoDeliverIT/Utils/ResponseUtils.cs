@@ -16,8 +16,6 @@ namespace ProjetoDeliverIT.Utils
             };
         }
 
-
-
         public static IActionResult RetornarRequisicaoResposta(ControllerBase controller, RetornoAPI result)
         {
             switch (result.StatusRetorno)
@@ -25,7 +23,7 @@ namespace ProjetoDeliverIT.Utils
                 case (short)StatusRetornoAPI.Sucesso:
                     return controller.Ok(result);
 
-                case (short)StatusRetornoAPI.ErroValidacao:
+                case (short)StatusRetornoAPI.ErroRegraNegocio:
                     return controller.BadRequest(result);
 
                 case (short)StatusRetornoAPI.NaoEncontrado:
@@ -35,6 +33,15 @@ namespace ProjetoDeliverIT.Utils
                 default:
                     return controller.StatusCode(500, result);
             }
+        }
+
+        //Caso haja necessidade de um retorno da Classe
+        public static T? ConverterParaClasseDesejada<T>(RetornoAPI retornoAPI)
+        {
+            if (retornoAPI.DadosRetorno is T valor)
+                return valor;
+
+            return default;
         }
     }
 }
