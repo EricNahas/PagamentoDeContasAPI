@@ -29,7 +29,16 @@ namespace ProjetoDeliverIT.Controllers
         public IActionResult Post([FromBody] Conta bill)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            {
+                var erros = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
+                RetornoAPI retorno = ResponseUtils.RetornoSucessoErro(StatusRetornoAPI.ErroModelState, MensagemRetornoAPI.ErroModelState, erros);
+
+                return ResponseUtils.RetornarRequisicaoResposta(this, retorno);
+            }
 
             RetornoAPI result = _service.Insert(bill);
 
