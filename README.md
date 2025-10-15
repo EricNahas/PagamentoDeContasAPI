@@ -11,7 +11,7 @@ Implementar um serviço REST que permita:
 - Cadastrar contas.  
 - Calcular automaticamente multa e juros conforme regras cadastradas.  
 - Listar todas as contas registradas.  
-- Demonstrar conhecimento em abstração e expansabilidade
+- Evidenciar habilidade em projetar sistemas abstratos, genéricos e escaláveis.
 
 ---
 
