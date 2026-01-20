@@ -1,4 +1,4 @@
-# PagamentoDeContasAPI
+# PagueAI
 
 O projeto foi construído em **.NET 8** com **C#**, utilizando **Entity Framework Core** e **MySQL** para persistência de dados.  
 O objetivo é gerenciar **Contas**, aplicando **regras parametrizadas** de multa e juros conforme o número de dias em atraso.
