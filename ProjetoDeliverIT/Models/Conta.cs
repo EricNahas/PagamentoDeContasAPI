@@ -14,6 +14,7 @@ namespace ProjetoDeliverIT.Models
         public string Nome { get; set; } = string.Empty;
 
         [CampoObrigatorioAttribute(ErrorMessage = "O campo Valor Original é obrigatório.")]
+        [Column(TypeName = "decimal(10,2)")]
         public decimal ValorOriginal { get; set; }
 
         [CampoObrigatorioAttribute(ErrorMessage = "O campo Data de Vencimento é obrigatório.")]
@@ -22,9 +23,13 @@ namespace ProjetoDeliverIT.Models
         [CampoObrigatorioAttribute(ErrorMessage = "O campo Data de Pagamento é obrigatório.")]
         public DateTimeOffset DataPagamento { get; set; }
 
+        [Column(TypeName = "decimal(10,2)")]
         public decimal ValorCorrigido { get; set; }
         public int DiasAtraso { get; set; }
+
+        [Column(TypeName = "decimal(10,2)")]
         public decimal Multa { get; set; }
+        [Column(TypeName = "decimal(10,2)")]
         public decimal JurosDia { get; set; }
     }
 }

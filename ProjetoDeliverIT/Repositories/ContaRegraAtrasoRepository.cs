@@ -1,5 +1,6 @@
 ﻿using ProjetoDeliverIT.Data;
 using ProjetoDeliverIT.Models;
+using ProjetoDeliverIT.RepositoriesInterfaces;
 
 namespace ProjetoDeliverIT.Repositories
 {

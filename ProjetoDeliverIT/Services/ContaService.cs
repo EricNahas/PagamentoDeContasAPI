@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ProjetoDeliverIT.DTOs;
 using ProjetoDeliverIT.Models;
-using ProjetoDeliverIT.Repositories;
+using ProjetoDeliverIT.RepositoriesInterfaces;
 using ProjetoDeliverIT.Utils;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;

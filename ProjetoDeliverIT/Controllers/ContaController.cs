@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetoDeliverIT.Enumerators;
+using ProjetoDeliverIT.EnumeratorsExtensions;
+using ProjetoDeliverIT.IntegrationsInterfaces;
 using ProjetoDeliverIT.Models;
 using ProjetoDeliverIT.Services;
 using ProjetoDeliverIT.Utils;
@@ -12,13 +14,17 @@ namespace ProjetoDeliverIT.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    public class ContaController : ControllerBase
+    public class ContaController : BaseController
     {
         private readonly IContaService _service;
 
-        public ContaController(IContaService service)
+        private readonly IRabbitMqPublisher _rabbitMqPublisher;
+
+
+        public ContaController(IContaService service, IRabbitMqPublisher rabbitMqPublisher)
         {
             _service = service;
+            _rabbitMqPublisher = rabbitMqPublisher;
         }
 
         /// <summary>
@@ -28,21 +34,14 @@ namespace ProjetoDeliverIT.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Conta bill)
         {
-            if (!ModelState.IsValid)
-            {
-                var erros = ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-
-                RetornoAPI retorno = ResponseUtils.RetornoSucessoErro(StatusRetornoAPI.ErroModelState, MensagemRetornoAPI.ErroModelState, erros);
-
-                return ResponseUtils.RetornarRequisicaoResposta(this, retorno);
-            }
-
-            RetornoAPI result = _service.Insert(bill);
-
-            return ResponseUtils.RetornarRequisicaoResposta(this, result);
+            return PostWithRabbitMQ(
+                bill,
+                _service.Insert,
+                async (_) =>
+                {
+                    await _rabbitMqPublisher.PublishCreatedAsync(bill);
+                }
+            );
         }
 
         /// <summary>

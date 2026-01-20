@@ -1,6 +1,6 @@
 ﻿using ProjetoDeliverIT.Models;
 
-namespace ProjetoDeliverIT.Repositories
+namespace ProjetoDeliverIT.RepositoriesInterfaces
 {
     public interface IContaRegraAtrasoRepository
     {

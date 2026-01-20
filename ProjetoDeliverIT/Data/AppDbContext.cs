@@ -8,6 +8,7 @@ namespace ProjetoDeliverIT.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         public DbSet<Conta> Contas { get; set; }
+
         public DbSet<ContaRegraAtraso> ContaRegraAtrasos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -18,6 +19,21 @@ namespace ProjetoDeliverIT.Data
                 new ContaRegraAtraso { ID = 2, DiasMinimo = 4, DiasMaximo = 5, Multa = 0.03m, JurosDia = 0.2m },
                 new ContaRegraAtraso { ID = 3, DiasMinimo = 6, DiasMaximo = null, Multa = 0.05m, JurosDia = 0.3m }
             );
+
+            modelBuilder.Entity<Conta>(entity =>
+            {
+                entity.Property(e => e.ValorOriginal)
+                      .HasColumnType("decimal(10,2)");
+
+                entity.Property(e => e.ValorCorrigido)
+                      .HasColumnType("decimal(10,2)");
+
+                entity.Property(e => e.Multa)
+                      .HasColumnType("decimal(10,2)");
+
+                entity.Property(e => e.JurosDia)
+                      .HasColumnType("decimal(10,2)");
+            });
         }
 
     }

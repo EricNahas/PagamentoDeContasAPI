@@ -2,7 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ProjetoDeliverIT.Data; 
+using ProjetoDeliverIT.Data;
+using ProjetoDeliverIT.RepositoriesInterfaces;
 
 namespace ProjetoDeliverIT.Repositories
 {

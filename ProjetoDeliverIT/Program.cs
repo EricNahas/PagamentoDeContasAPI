@@ -1,8 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using ProjetoDeliverIT.Data;
+using ProjetoDeliverIT.Integrations;
+using ProjetoDeliverIT.IntegrationsInterfaces;
 using ProjetoDeliverIT.Mappings;
 using ProjetoDeliverIT.Repositories;
+using ProjetoDeliverIT.RepositoriesInterfaces;
 using ProjetoDeliverIT.Services;
 using System.Reflection;
 
@@ -13,6 +16,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddScoped<IRabbitMqPublisher, RabbitMqPublisher>();
+
 
 
 // Configuração do MySQL
